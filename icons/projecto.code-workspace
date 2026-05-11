@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../projecto2"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "projecto"
+	}
+}

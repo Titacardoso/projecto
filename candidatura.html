@@ -12,7 +12,10 @@
 <header>
     <img src="logo.png" id="logo" alt="Logótipo Lameiras Mendes">
 
-    <h1 id="titulo">Lameiras Mendes Transportes</h1>
+    <h1 id="titulo">
+        Lameiras Mendes<br>
+        <span>Transportes</span>
+    </h1>
 
     <p class="destaque">Qualidade que move o seu negócio.</p>
 
@@ -25,11 +28,14 @@
 </header>
 
 <section class="caixa">
+
     <h2>Candidatura</h2>
 
-    <p>Preencha o formulário abaixo para se candidatar a uma oportunidade na nossa empresa.</p>
+    <p class="texto-candidatura">
+        Preencha o formulário abaixo para se candidatar a uma oportunidade na nossa empresa.
+    </p>
 
-    <form>
+    <form class="form-candidatura">
 
         <label for="nome">Nome completo:</label>
         <input type="text" id="nome" name="nome" required>
@@ -38,21 +44,70 @@
         <input type="email" id="email" name="email" required>
 
         <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone">
+        <input type="tel" id="telefone" name="telefone" required>
 
         <label for="morada">Morada:</label>
         <input type="text" id="morada" name="morada">
 
         <label for="funcao">Função a que se candidata:</label>
-        <input type="text" id="funcao" name="funcao">
+
+        <select id="funcao" name="funcao" required>
+            <option value="">Selecione uma opção</option>
+            <option value="motorista">Motorista</option>
+            <option value="administrativo">Administrativo</option>
+            <option value="armazem">Armazém</option>
+            <option value="outro">Outro</option>
+        </select>
+
+        <label for="carta">Carta de condução:</label>
+
+        <select id="carta" name="carta">
+            <option value="">Selecione uma opção</option>
+            <option value="b">Categoria B</option>
+            <option value="c">Categoria C</option>
+            <option value="c+e">Categoria C+E</option>
+            <option value="nao">Não tenho carta</option>
+        </select>
+
+        <label>Disponibilidade:</label>
+
+        <div class="disponibilidade">
+
+            <label class="opcao">
+                <input type="radio" name="disponibilidade" value="nacional">
+                🚛 Nacional
+            </label>
+
+            <label class="opcao">
+                <input type="radio" name="disponibilidade" value="internacional">
+                🌍 Internacional
+            </label>
+
+        </div>
+
+        <label for="experiencia">Anos de experiência:</label>
+        <input type="number" id="experiencia" name="experiencia" min="0">
+
+        <label for="cv">Anexar CV:</label>
+        <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx">
 
         <label for="mensagem">Apresentação:</label>
-        <textarea id="mensagem" name="mensagem" rows="6"></textarea>
+
+        <textarea id="mensagem"
+                  name="mensagem"
+                  rows="6"
+                  placeholder="Fale-nos um pouco sobre si e sobre a sua experiência.">
+        </textarea>
 
         <input type="submit" value="Enviar candidatura">
 
     </form>
+
 </section>
+
+<footer>
+    <p>© Lameiras Mendes Transportes</p>
+</footer>
 
 </body>
 </html>

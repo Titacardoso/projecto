@@ -1,14 +1,16 @@
 @font-face {
-    font-family: 'banff';
+    font-family: 'Banff';
     src: url('fonts/banff.ttf') format('truetype');
 }
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #eeeeee;
     margin: 0;
     color: #333;
 }
+
+/* HEADER */
 
 header {
     text-align: center;
@@ -17,15 +19,17 @@ header {
 }
 
 #logo {
-    width: 180px;
+    width: 300px;
     height: auto;
 }
 
 #titulo {
     font-family: 'Banff', sans-serif;
     color: #8B0000;
-    font-size: 2.5em;
-    margin: 10px 0;
+    font-size: 3.5em;
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 5px 0 10px 0;
 }
 
 #titulo span {
@@ -34,81 +38,399 @@ header {
 
 .destaque {
     color: #8B0000;
-    font-size: 1.1em;
+    font-size: 1.15em;
+    margin-top: 10px;
 }
+
+/* MENU */
 
 nav {
     margin-top: 15px;
+    background-color: #000;
+    padding: 15px 0;
+    text-align: center;
 }
 
 nav a {
     margin: 0 15px;
     text-decoration: none;
-    color: darkblue;
+    color: white;
     font-weight: bold;
+    transition: 0.2s;
+}
+
+nav a:hover {
+    color: #d3d3d3;
+}
+
+/* BANNER INDEX */
+
+.banner {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
 }
 
 .banner img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
     display: block;
 }
+
+/* BANNER FROTA */
+
+.banner-frota {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+}
+
+.banner-frota img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    filter: brightness(65%);
+}
+
+.texto-banner {
+    position: absolute;
+    left: 8%;
+    bottom: 50px;
+    color: white;
+    text-align: left;
+}
+
+.texto-banner h2 {
+    font-size: 2.8em;
+    margin: 0 0 10px 0;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+.texto-banner p {
+    font-size: 1.3em;
+    margin: 0;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+/* CAIXAS */
 
 .caixa {
     width: 80%;
     margin: 20px auto;
     background-color: white;
-    padding: 20px;
+    padding: 25px;
     border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-sizing: border-box;
 }
 
 .caixa h2 {
     color: #8B0000;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .caixa p {
-    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* SERVIÇOS */
+
+.intro-servicos {
+    margin-bottom: 20px;
+}
+
+.servicos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.servico {
+    background-color: #f8f8f8;
+    width: 220px;
+    height: 140px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.servico:hover {
+    transform: translateY(-5px);
+}
+
+.servico img {
+    width: 40px;
     margin-bottom: 10px;
 }
 
-ul {
-    color: #333;
+.servico h3 {
+    color: #8B0000;
+    font-size: 1em;
+    text-align: center;
+    margin: 0;
 }
 
+/* GALERIA */
+
 .galeria {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 25px;
 }
 
 .galeria img {
-    width: 30%;
-    margin: 10px;
+    width: 360px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: 0.3s;
 }
 
-form {
+.galeria img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* CONTACTOS */
+
+.info-contacto p {
+    font-size: 1.1em;
+}
+
+/* FORMULÁRIO CONTACTO */
+
+.formulario-contacto {
+    max-width: 600px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
+    text-align: left;
 }
 
-label {
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-input, textarea {
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-input[type="submit"] {
+.formulario-contacto label {
     margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.formulario-contacto input,
+.formulario-contacto textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.formulario-contacto textarea {
+    resize: vertical;
+}
+
+.formulario-contacto input[type="submit"] {
+    width: 180px;
+    margin: 20px auto 0 auto;
     background-color: #8B0000;
     color: white;
     border: none;
     cursor: pointer;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.2s;
 }
 
-input[type="submit"]:hover {
+.formulario-contacto input[type="submit"]:hover {
     background-color: #a00000;
+    transform: scale(1.05);
+}
+
+/* CANDIDATURA */
+
+.texto-candidatura {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-candidatura {
+    max-width: 600px;
+    margin: 30px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-candidatura label {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-candidatura input,
+.form-candidatura textarea,
+.form-candidatura select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.form-candidatura textarea {
+    resize: vertical;
+}
+
+.form-candidatura input[type="file"] {
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+
+.form-candidatura input[type="submit"] {
+    width: 180px;
+    margin: 20px auto 0 auto;
+    background-color: #8B0000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.form-candidatura input[type="submit"]:hover {
+    background-color: #a00000;
+    transform: scale(1.05);
+}
+
+/* DISPONIBILIDADE */
+
+.disponibilidade {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.opcao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f8f8;
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+.opcao:hover {
+    background-color: #eeeeee;
+    transform: scale(1.01);
+}
+
+.opcao input[type="radio"] {
+    width: auto;
+    margin: 0;
+}
+
+/* FOCUS */
+
+.form-candidatura input:focus,
+.form-candidatura textarea:focus,
+.form-candidatura select:focus,
+.formulario-contacto input:focus,
+.formulario-contacto textarea:focus {
+    outline: none;
+    border: 1px solid #8B0000;
+}
+
+/* FOOTER */
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 768px) {
+
+    .caixa {
+        width: 95%;
+    }
+
+    .banner {
+        height: 260px;
+    }
+
+    .banner-frota {
+        height: 320px;
+    }
+
+    .texto-banner {
+        left: 6%;
+        bottom: 40px;
+    }
+
+    .texto-banner h2 {
+        font-size: 1.8em;
+    }
+
+    .texto-banner p {
+        font-size: 1em;
+    }
+
+    .servicos-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .servico {
+        width: 90%;
+    }
+
+    .galeria img {
+        width: 90%;
+        height: auto;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .form-candidatura,
+    .formulario-contacto {
+        width: 100%;
+    }
+
+    .form-candidatura input[type="submit"],
+    .formulario-contacto input[type="submit"] {
+        width: 100%;
+    }
 }
