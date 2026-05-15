@@ -3,6 +3,11 @@
     src: url('fonts/banff.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'Technical';
+    src: url('fonts/technical.ttf') format('truetype');
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #eeeeee;
@@ -14,21 +19,29 @@ body {
 
 header {
     text-align: center;
-    background-color: white;
-    padding: 20px;
+    padding: 12px 20px;
+    position: relative;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,0.92),
+        rgba(255,255,255,0.92)),
+        url("icons/banner.frota.jpg");
+
+    background-size: cover;
+    background-position: center;
 }
 
 #logo {
-    width: 300px;
+    width: 220px;
     height: auto;
 }
 
 #titulo {
     font-family: 'Banff', sans-serif;
-    color: #8B0000;
-    font-size: 3.5em;
-    font-weight: bold;
-    line-height: 1.2;
+    color: #e10600;
+    font-size: 2.8em;
+    font-weight: normal;
+    line-height: 1.1;
     margin: 5px 0 10px 0;
 }
 
@@ -36,9 +49,20 @@ header {
     display: block;
 }
 
+#titulo .transportes {
+    font-family: 'Technical', sans-serif !important;
+    color: #000 !important;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+    font-weight: bold;
+    display: block;
+    margin-top: -8px;
+    text-shadow: 0.4px 0 #000;
+}
+
 .destaque {
-    color: #8B0000;
-    font-size: 1.15em;
+    color: #e10600;
+    font-size: 1.05em;
     margin-top: 10px;
 }
 
@@ -63,11 +87,11 @@ nav a:hover {
     color: #d3d3d3;
 }
 
-/* BANNER INDEX */
+/* BANNER */
 
 .banner {
     width: 100%;
-    height: 600px;
+    height: 420px;
     overflow: hidden;
 }
 
@@ -84,7 +108,7 @@ nav a:hover {
 .banner-frota {
     position: relative;
     width: 100%;
-    height: 520px;
+    height: 420px;
     overflow: hidden;
 }
 
@@ -106,13 +130,13 @@ nav a:hover {
 }
 
 .texto-banner h2 {
-    font-size: 2.8em;
+    font-size: 2.5em;
     margin: 0 0 10px 0;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
 }
 
 .texto-banner p {
-    font-size: 1.3em;
+    font-size: 1.2em;
     margin: 0;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
 }
@@ -120,7 +144,7 @@ nav a:hover {
 /* CAIXAS */
 
 .caixa {
-    width: 80%;
+    width: 85%;
     margin: 20px auto;
     background-color: white;
     padding: 25px;
@@ -130,7 +154,7 @@ nav a:hover {
 }
 
 .caixa h2 {
-    color: #8B0000;
+    color: #e10600;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -178,7 +202,7 @@ nav a:hover {
 }
 
 .servico h3 {
-    color: #8B0000;
+    color: #e10600;
     font-size: 1em;
     text-align: center;
     margin: 0;
@@ -215,62 +239,9 @@ nav a:hover {
     font-size: 1.1em;
 }
 
-/* FORMULÁRIO CONTACTO */
+/* FORMULÁRIOS */
 
-.formulario-contacto {
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
-
-.formulario-contacto label {
-    margin-top: 15px;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-}
-
-.formulario-contacto input,
-.formulario-contacto textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1em;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-.formulario-contacto textarea {
-    resize: vertical;
-}
-
-.formulario-contacto input[type="submit"] {
-    width: 180px;
-    margin: 20px auto 0 auto;
-    background-color: #8B0000;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 8px;
-    transition: 0.2s;
-}
-
-.formulario-contacto input[type="submit"]:hover {
-    background-color: #a00000;
-    transform: scale(1.05);
-}
-
-/* CANDIDATURA */
-
-.texto-candidatura {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
+.formulario-contacto,
 .form-candidatura {
     max-width: 600px;
     margin: 30px auto 0 auto;
@@ -278,6 +249,7 @@ nav a:hover {
     flex-direction: column;
 }
 
+.formulario-contacto label,
 .form-candidatura label {
     margin-top: 15px;
     margin-bottom: 5px;
@@ -285,6 +257,8 @@ nav a:hover {
     color: #333;
 }
 
+.formulario-contacto input,
+.formulario-contacto textarea,
 .form-candidatura input,
 .form-candidatura textarea,
 .form-candidatura select {
@@ -297,19 +271,16 @@ nav a:hover {
     font-family: Arial, sans-serif;
 }
 
+.formulario-contacto textarea,
 .form-candidatura textarea {
     resize: vertical;
 }
 
-.form-candidatura input[type="file"] {
-    background-color: #f8f8f8;
-    cursor: pointer;
-}
-
+.formulario-contacto input[type="submit"],
 .form-candidatura input[type="submit"] {
     width: 180px;
     margin: 20px auto 0 auto;
-    background-color: #8B0000;
+    background-color: #e10600;
     color: white;
     border: none;
     cursor: pointer;
@@ -318,8 +289,9 @@ nav a:hover {
     transition: 0.2s;
 }
 
+.formulario-contacto input[type="submit"]:hover,
 .form-candidatura input[type="submit"]:hover {
-    background-color: #a00000;
+    background-color: #b80000;
     transform: scale(1.05);
 }
 
@@ -336,7 +308,8 @@ nav a:hover {
 .opcao {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 12px;
     background-color: #f8f8f8;
     padding: 12px 18px;
     border-radius: 8px;
@@ -351,20 +324,51 @@ nav a:hover {
     transform: scale(1.01);
 }
 
-.opcao input[type="radio"] {
+.opcao input {
     width: auto;
     margin: 0;
 }
 
-/* FOCUS */
+/* RGPD */
 
-.form-candidatura input:focus,
-.form-candidatura textarea:focus,
-.form-candidatura select:focus,
-.formulario-contacto input:focus,
-.formulario-contacto textarea:focus {
-    outline: none;
-    border: 1px solid #8B0000;
+.rgpd-box {
+    margin-top: 20px;
+}
+
+.rgpd {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95em;
+    line-height: 1.4;
+    color: #444;
+}
+
+.rgpd input {
+    width: auto;
+    margin: 0;
+}
+
+/* REDES */
+
+.redes {
+    margin-top: 15px;
+}
+
+.redes a {
+    display: inline-block !important;
+    background-color: #e10600 !important;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 10px 22px !important;
+    border-radius: 30px !important;
+    font-weight: bold !important;
+    transition: 0.3s !important;
+}
+
+.redes a:hover {
+    background-color: white !important;
+    color: #e10600 !important;
 }
 
 /* FOOTER */
@@ -385,16 +389,16 @@ footer {
     }
 
     .banner {
-        height: 260px;
+        height: 220px;
     }
 
     .banner-frota {
-        height: 320px;
+        height: 260px;
     }
 
     .texto-banner {
         left: 6%;
-        bottom: 40px;
+        bottom: 30px;
     }
 
     .texto-banner h2 {
@@ -424,13 +428,19 @@ footer {
         margin: 10px 0;
     }
 
-    .form-candidatura,
-    .formulario-contacto {
-        width: 100%;
+    .rgpd {
+        align-items: flex-start;
     }
 
-    .form-candidatura input[type="submit"],
-    .formulario-contacto input[type="submit"] {
-        width: 100%;
+    #logo {
+        width: 160px;
+    }
+
+    #titulo {
+        font-size: 2em;
+    }
+
+    .destaque {
+        font-size: 0.95em;
     }
 }

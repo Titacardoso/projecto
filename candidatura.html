@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Candidatura | Lameiras Mendes Transportes</title>
+
     <link rel="stylesheet" href="projecto.css">
 </head>
 
 <body>
 
 <header>
+
     <img src="logo.png" id="logo" alt="Logótipo Lameiras Mendes">
 
     <h1 id="titulo">
         Lameiras Mendes<br>
-        <span>Transportes</span>
+        <span class="transportes">Transportes</span>
     </h1>
 
     <p class="destaque">Qualidade que move o seu negócio.</p>
@@ -25,6 +28,7 @@
         <a href="contactos.html">Contacte-nos</a>
         <a href="candidatura.html">Candidatura</a>
     </nav>
+
 </header>
 
 <section class="caixa">
@@ -35,7 +39,14 @@
         Preencha o formulário abaixo para se candidatar a uma oportunidade na nossa empresa.
     </p>
 
-    <form class="form-candidatura">
+    <form class="form-candidatura"
+          action="https://formsubmit.co/azevedotitacardoso@gmail.com"
+          method="POST"
+          enctype="multipart/form-data">
+
+        <input type="hidden" name="_subject" value="Nova candidatura - Lameiras Mendes">
+
+        <input type="hidden" name="_captcha" value="false">
 
         <label for="nome">Nome completo:</label>
         <input type="text" id="nome" name="nome" required>
@@ -51,7 +62,7 @@
 
         <label for="funcao">Função a que se candidata:</label>
 
-        <select id="funcao" name="funcao" required>
+        <select id="funcao" name="funcao" required onchange="mostrarDisponibilidade()">
             <option value="">Selecione uma opção</option>
             <option value="motorista">Motorista</option>
             <option value="administrativo">Administrativo</option>
@@ -59,27 +70,29 @@
             <option value="outro">Outro</option>
         </select>
 
-        <label for="carta">Carta de condução:</label>
+        <div id="carta-box" style="display: none;">
 
-        <select id="carta" name="carta">
-            <option value="">Selecione uma opção</option>
-            <option value="b">Categoria B</option>
-            <option value="c">Categoria C</option>
-            <option value="c+e">Categoria C+E</option>
-            <option value="nao">Não tenho carta</option>
-        </select>
+            <label for="carta">Carta de condução:</label>
 
-        <label>Disponibilidade:</label>
+            <select id="carta" name="carta">
+                <option value="">Selecione uma opção</option>
+                <option value="b">Categoria B</option>
+                <option value="c">Categoria C</option>
+                <option value="c+e">Categoria C+E</option>
+                <option value="nao">Não tenho carta</option>
+            </select>
 
-        <div class="disponibilidade">
+        </div>
+
+        <div class="disponibilidade" id="disponibilidade-box" style="display: none;">
 
             <label class="opcao">
-                <input type="radio" name="disponibilidade" value="nacional">
-                🚛 Nacional
+                <input type="radio" name="disponibilidade" value="Nacional">
+                🚚 Nacional
             </label>
 
             <label class="opcao">
-                <input type="radio" name="disponibilidade" value="internacional">
+                <input type="radio" name="disponibilidade" value="Internacional">
                 🌍 Internacional
             </label>
 
@@ -96,8 +109,19 @@
         <textarea id="mensagem"
                   name="mensagem"
                   rows="6"
-                  placeholder="Fale-nos um pouco sobre si e sobre a sua experiência.">
-        </textarea>
+                  placeholder="Fale-nos um pouco sobre si e sobre a sua experiência."></textarea>
+
+        <div class="rgpd-box">
+
+            <label class="rgpd">
+
+                <input type="checkbox" required>
+
+                Autorizo o tratamento dos meus dados pessoais para efeitos de recrutamento e seleção pela Lameiras Mendes Transportes.
+
+            </label>
+
+        </div>
 
         <input type="submit" value="Enviar candidatura">
 
@@ -108,6 +132,33 @@
 <footer>
     <p>© Lameiras Mendes Transportes</p>
 </footer>
+
+<script>
+
+function mostrarDisponibilidade() {
+
+    const funcao = document.getElementById("funcao").value;
+
+    const disponibilidade =
+    document.getElementById("disponibilidade-box");
+
+    const carta =
+    document.getElementById("carta-box");
+
+    if(funcao === "motorista") {
+
+        disponibilidade.style.display = "flex";
+        carta.style.display = "block";
+
+    } else {
+
+        disponibilidade.style.display = "none";
+        carta.style.display = "none";
+
+    }
+}
+
+</script>
 
 </body>
 </html>
