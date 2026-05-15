@@ -32,8 +32,9 @@ header {
 }
 
 #logo {
-    width: 220px;
+    width: 280px;
     height: auto;
+    margin-bottom: -10px;
 }
 
 #titulo {
