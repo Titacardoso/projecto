@@ -21,12 +21,9 @@ header {
     text-align: center;
     padding: 12px 20px;
     position: relative;
-
     background-image:
-        linear-gradient(rgba(255,255,255,0.92),
-        rgba(255,255,255,0.92)),
+        linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)),
         url("icons/banner.frota.jpg");
-
     background-size: cover;
     background-position: center;
 }
@@ -164,6 +161,59 @@ nav a:hover {
     text-align: center;
     margin-bottom: 10px;
     line-height: 1.6;
+}
+
+/* RECURSOS HUMANOS */
+
+.rh-layout {
+    width: 90%;
+    margin: 35px auto;
+    display: flex;
+    gap: 25px;
+    align-items: stretch;
+}
+
+.rh-bloco,
+.rh-conteudo {
+    background-color: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.rh-bloco {
+    flex: 1;
+}
+
+.rh-conteudo {
+    flex: 2;
+}
+
+.rh-bloco h3 {
+    color: #e10600;
+    font-size: 1.7em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.rh-conteudo h2 {
+    color: #e10600;
+    font-size: 1.9em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.rh-bloco p,
+.rh-conteudo p {
+    line-height: 1.9;
+    font-size: 1.05em;
+    text-align: center;
 }
 
 /* SERVIÇOS */
@@ -372,6 +422,23 @@ nav a:hover {
     color: #e10600 !important;
 }
 
+/* PRIVACIDADE */
+
+.privacidade {
+    margin-top: 12px;
+}
+
+.privacidade a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: 0.2s;
+}
+
+.privacidade a:hover {
+    color: #e10600;
+}
+
 /* FOOTER */
 
 footer {
@@ -408,6 +475,15 @@ footer {
 
     .texto-banner p {
         font-size: 1em;
+    }
+
+    .rh-layout {
+        width: 95%;
+        flex-direction: column;
+    }
+
+    .rh-conteudo h2 {
+        font-size: 1.8em;
     }
 
     .servicos-container {
