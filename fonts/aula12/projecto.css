@@ -1,0 +1,523 @@
+@font-face {
+    font-family: 'Banff';
+    src: url('fonts/banff.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Technical';
+    src: url('fonts/technical.ttf') format('truetype');
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eeeeee;
+    margin: 0;
+    color: #333;
+}
+
+/* HEADER */
+
+header {
+    text-align: center;
+    padding: 12px 20px;
+    position: relative;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)),
+        url("icons/banner.frota.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+#logo {
+    width: 280px;
+    height: auto;
+    margin-bottom: -10px;
+}
+
+#titulo {
+    font-family: 'Banff', sans-serif;
+    color: #e10600;
+    font-size: 2.8em;
+    font-weight: normal;
+    line-height: 1.1;
+    margin: 5px 0 10px 0;
+}
+
+#titulo span {
+    display: block;
+}
+
+#titulo .transportes {
+    font-family: 'Technical', sans-serif !important;
+    color: #000 !important;
+    font-size: 0.70em;
+    letter-spacing: 1px;
+    font-weight: bold;
+    display: block;
+    margin-top: -8px;
+    text-shadow: 0.4px 0 #000;
+}
+
+.destaque {
+    color: #e10600;
+    font-size: 1.05em;
+    margin-top: 10px;
+}
+
+/* MENU */
+
+nav {
+    margin-top: 15px;
+    background-color: #000;
+    padding: 15px 0;
+    text-align: center;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+nav a:hover {
+    color: #d3d3d3;
+}
+
+/* BANNER */
+
+.banner {
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+/* BANNER FROTA */
+
+.banner-frota {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+}
+
+.banner-frota img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    filter: brightness(65%);
+}
+
+.texto-banner {
+    position: absolute;
+    left: 8%;
+    bottom: 50px;
+    color: white;
+    text-align: left;
+}
+
+.texto-banner h2 {
+    font-size: 2.5em;
+    margin: 0 0 10px 0;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+.texto-banner p {
+    font-size: 1.2em;
+    margin: 0;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+/* CAIXAS */
+
+.caixa {
+    width: 85%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.caixa h2 {
+    color: #e10600;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.caixa p {
+    text-align: center;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* RECURSOS HUMANOS */
+
+.rh-layout {
+    width: 90%;
+    margin: 35px auto;
+    display: flex;
+    gap: 25px;
+    align-items: stretch;
+}
+
+.rh-bloco,
+.rh-conteudo {
+    background-color: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.rh-bloco {
+    flex: 1;
+}
+
+.rh-conteudo {
+    flex: 2;
+}
+
+.rh-bloco h3 {
+    color: #e10600;
+    font-size: 1.7em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.rh-conteudo h2 {
+    color: #e10600;
+    font-size: 1.9em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.rh-bloco p,
+.rh-conteudo p {
+    line-height: 1.9;
+    font-size: 1.05em;
+    text-align: center;
+}
+
+/* SERVIÇOS */
+
+.intro-servicos {
+    margin-bottom: 20px;
+}
+
+.servicos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.servico {
+    background-color: #f8f8f8;
+    width: 220px;
+    height: 140px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.servico:hover {
+    transform: translateY(-5px);
+}
+
+.servico img {
+    width: 40px;
+    margin-bottom: 10px;
+}
+
+.servico h3 {
+    color: #e10600;
+    font-size: 1em;
+    text-align: center;
+    margin: 0;
+}
+
+/* GALERIA */
+
+.galeria {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 25px;
+}
+
+.galeria img {
+    width: 360px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+
+.galeria img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* CONTACTOS */
+
+.info-contacto p {
+    font-size: 1.1em;
+}
+
+/* FORMULÁRIOS */
+
+.formulario-contacto,
+.form-candidatura {
+    max-width: 600px;
+    margin: 30px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-contacto label,
+.form-candidatura label {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.formulario-contacto input,
+.formulario-contacto textarea,
+.form-candidatura input,
+.form-candidatura textarea,
+.form-candidatura select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.formulario-contacto textarea,
+.form-candidatura textarea {
+    resize: vertical;
+}
+
+.formulario-contacto input[type="submit"],
+.form-candidatura input[type="submit"] {
+    width: 180px;
+    margin: 20px auto 0 auto;
+    background-color: #e10600;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.formulario-contacto input[type="submit"]:hover,
+.form-candidatura input[type="submit"]:hover {
+    background-color: #b80000;
+    transform: scale(1.05);
+}
+
+/* DISPONIBILIDADE */
+
+.disponibilidade {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.opcao {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    background-color: #f8f8f8;
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+.opcao:hover {
+    background-color: #eeeeee;
+    transform: scale(1.01);
+}
+
+.opcao input {
+    width: auto;
+    margin: 0;
+}
+
+/* RGPD */
+
+.rgpd-box {
+    margin-top: 20px;
+}
+
+.rgpd {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95em;
+    line-height: 1.4;
+    color: #444;
+}
+
+.rgpd input {
+    width: auto;
+    margin: 0;
+}
+
+/* REDES */
+
+.redes {
+    margin-top: 15px;
+}
+
+.redes a {
+    display: inline-block !important;
+    background-color: #e10600 !important;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 10px 22px !important;
+    border-radius: 30px !important;
+    font-weight: bold !important;
+    transition: 0.3s !important;
+}
+
+.redes a:hover {
+    background-color: white !important;
+    color: #e10600 !important;
+}
+
+/* PRIVACIDADE */
+
+.privacidade {
+    margin-top: 12px;
+}
+
+.privacidade a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: 0.2s;
+}
+
+.privacidade a:hover {
+    color: #e10600;
+}
+
+/* FOOTER */
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 768px) {
+
+    .caixa {
+        width: 95%;
+    }
+
+    .banner {
+        height: 220px;
+    }
+
+    .banner-frota {
+        height: 260px;
+    }
+
+    .texto-banner {
+        left: 6%;
+        bottom: 30px;
+    }
+
+    .texto-banner h2 {
+        font-size: 1.8em;
+    }
+
+    .texto-banner p {
+        font-size: 1em;
+    }
+
+    .rh-layout {
+        width: 95%;
+        flex-direction: column;
+    }
+
+    .rh-conteudo h2 {
+        font-size: 1.8em;
+    }
+
+    .servicos-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .servico {
+        width: 90%;
+    }
+
+    .galeria img {
+        width: 90%;
+        height: auto;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .rgpd {
+        align-items: flex-start;
+    }
+
+    #logo {
+        width: 160px;
+    }
+
+    #titulo {
+        font-size: 2em;
+    }
+
+    .destaque {
+        font-size: 0.95em;
+    }
+}
