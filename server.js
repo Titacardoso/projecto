@@ -11,36 +11,53 @@ app.use(cors());
 
 const PORT = 3000;
 
+const queryViaturas = `
+    SELECT
+        id,
+        Matricula,
+        Marca,
+        Modelo,
+        Ano,
+        VIN,
+        Tipo,
+        Imagem,
+        CASE
+            WHEN ativo = 1 THEN "Sim"
+            ELSE "Nao"
+        END AS ativo
+    FROM viaturas
+`;
+
+app.get("/api/estado", (req, res) => {
+    res.status(200).json({
+        mensagem: "API da Gestão de Frota a funcionar",
+        estado: "OK"
+    });
+});
+
 app.get("/api/frota", async (req, res) => {
-
-    const [viaturas] = await pool.execute(
-        "SELECT * FROM viaturas"
-    );
-
+    const [viaturas] = await pool.execute(queryViaturas);
     res.status(200).json(viaturas);
-
 });
 
 app.get("/api/frota/:id", async (req, res) => {
-
     const id = Number(req.params.id);
 
     const [viatura] = await pool.execute(
-        "SELECT * FROM viaturas WHERE id = ?",
+        `${queryViaturas} WHERE id = ?`,
         [id]
     );
 
     if (viatura.length === 0) {
         return res.status(404).json({
-            mensagem: "Viatura não encontrada"
+            mensagem: "Viatura nao encontrada"
         });
     }
 
     res.status(200).json(viatura[0]);
-
 });
-app.post("/api/frota", async (req, res) => {
 
+app.post("/api/frota", async (req, res) => {
     const { Matricula, Marca, Modelo, Ano, VIN, Tipo } = req.body;
 
     if (!Matricula || !Marca || !Modelo || !Ano || !VIN || !Tipo) {
@@ -59,11 +76,9 @@ app.post("/api/frota", async (req, res) => {
     res.status(201).json({
         mensagem: "Viatura criada com sucesso"
     });
-
 });
 
 app.put("/api/frota/:id", async (req, res) => {
-
     const id = Number(req.params.id);
 
     const { Matricula, Marca, Modelo, Ano, VIN, Tipo } = req.body;
@@ -75,7 +90,7 @@ app.put("/api/frota/:id", async (req, res) => {
 
     if (viatura.length === 0) {
         return res.status(404).json({
-            mensagem: "Viatura não encontrada"
+            mensagem: "Viatura nao encontrada"
         });
     }
 
@@ -89,10 +104,9 @@ app.put("/api/frota/:id", async (req, res) => {
     res.status(200).json({
         mensagem: "Viatura atualizada com sucesso"
     });
-
 });
-app.delete("/api/frota/:id", async (req, res) => {
 
+app.delete("/api/frota/:id", async (req, res) => {
     const id = Number(req.params.id);
 
     const [viatura] = await pool.execute(
@@ -102,7 +116,7 @@ app.delete("/api/frota/:id", async (req, res) => {
 
     if (viatura.length === 0) {
         return res.status(404).json({
-            mensagem: "Viatura não encontrada"
+            mensagem: "Viatura nao encontrada"
         });
     }
 
@@ -114,8 +128,35 @@ app.delete("/api/frota/:id", async (req, res) => {
     res.status(200).json({
         mensagem: "Viatura eliminada com sucesso"
     });
-
 });
+
+app.patch("/api/frota/:id", async (req, res) => {
+    const id = Number(req.params.id);
+
+    const { ativo } = req.body;
+
+    const [viatura] = await pool.execute(
+        "SELECT * FROM viaturas WHERE id = ?",
+        [id]
+    );
+
+    if (viatura.length === 0) {
+        return res.status(404).json({
+            mensagem: "Viatura nao encontrada"
+        });
+    }
+
+    await pool.execute(
+        "UPDATE viaturas SET ativo = ? WHERE id = ?",
+        [ativo, id]
+    );
+
+    res.status(200).json({
+        mensagem: "Estado atualizado com sucesso"
+    });
+});
+
+
 app.listen(PORT, () => {
     console.log("Servidor a correr na porta 3000");
 });
