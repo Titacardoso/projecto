@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Frota | Lameiras Mendes</title>
+    <link rel="stylesheet" href="projecto.css">
+</head>
+
+<body>
+
+<header>
+    <img src="imagens/logo.jpg" id="logo" alt="Logótipo Lameiras Mendes">
+
+    <h1 id="titulo">
+        Lameiras Mendes<br>
+        <span class="transportes">Transportes</span>
+    </h1>
+
+    <p class="destaque">Área Reservada</p>
+</header>
+
+<section class="caixa">
+
+    <h2>Gestão de Frota</h2>
+
+    <button onclick="terminarSessao()">
+        Terminar Sessão
+    </button>
+
+    <div id="lista-frota"></div>
+
+</section>
+
+<footer>
+    <p>© Lameiras Mendes Transportes</p>
+</footer>
+
+<script src="app.js"></script>
+
+<script>
+function terminarSessao(){
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

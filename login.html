@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Área Reservada | Lameiras Mendes</title>
+
+<link rel="stylesheet" href="projecto.css">
+
+<link rel="icon" type="image/png" href="icons/favicon.png">
+
+</head>
+
+<body>
+
+<header>
+
+<img src="imagens/logo.jpg" id="logo" alt="Logótipo Lameiras Mendes">
+
+<h1 id="titulo">
+
+Lameiras Mendes<br>
+
+<span class="transportes">Transportes</span>
+
+</h1>
+
+<p class="destaque">
+
+Área Reservada
+
+</p>
+
+</header>
+
+<section class="caixa">
+
+<h2>Login</h2>
+
+<div class="login-container">
+
+<input
+type="text"
+id="utilizador"
+placeholder="Utilizador">
+
+<input
+type="password"
+id="password"
+placeholder="Palavra-passe">
+
+<button onclick="fazerLogin()">
+
+Entrar
+
+</button>
+
+<p id="mensagem"></p>
+
+</div>
+
+</section>
+
+<script>
+
+function fazerLogin(){
+
+const utilizador =
+document.getElementById("utilizador").value;
+
+const password =
+document.getElementById("password").value;
+
+if(
+
+utilizador === "admin"
+
+&&
+
+password === "1234"
+
+){
+
+window.location.href =
+"gestao-frota.html";
+
+}
+
+else{
+
+document.getElementById("mensagem").innerHTML =
+
+"Dados incorretos.";
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
