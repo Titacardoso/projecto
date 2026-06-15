@@ -685,3 +685,26 @@ text-align:center;
 .card-frota button:hover {
     background-color: #e10600;
 }
+.botao-frota {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.botao-frota a {
+    display: inline-block;
+    background-color: #e10600;
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.botao-frota a:hover {
+    background-color: #a40000;
+}
+.texto-frota {
+    text-align: center;
+    color: #666;
+    margin-top: 20px;
+}
