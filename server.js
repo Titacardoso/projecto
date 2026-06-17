@@ -139,7 +139,38 @@ app.delete("/api/frota/:id", async (req, res) => {
 app.patch("/api/frota/:id", async (req, res) => {
     const id = Number(req.params.id);
 
-    const { ativo } = req.body;
+    const [viatura] = await pool.execute(
+        "SELECT * FROM viaturas WHERE id = ?",
+        [id]
+    );
+
+    if (viatura.length === 0) {
+        return res.status(404).json({
+            mensagem: "Viatura nao encontrada"
+        });
+    }
+
+    let novoEstado;
+
+    if (req.body.ativo === 0 || req.body.ativo === 1) {
+        novoEstado = req.body.ativo;
+    } else {
+        novoEstado = viatura[0].ativo === 1 ? 0 : 1;
+    }
+
+    await pool.execute(
+        "UPDATE viaturas SET ativo = ? WHERE id = ?",
+        [novoEstado, id]
+    );
+
+    res.status(200).json({
+        mensagem: "Estado atualizado com sucesso",
+        ativo: novoEstado
+    });
+});
+
+app.patch("/api/frota/:id/ativo", async (req, res) => {
+    const id = Number(req.params.id);
 
     const [viatura] = await pool.execute(
         "SELECT * FROM viaturas WHERE id = ?",
@@ -152,13 +183,16 @@ app.patch("/api/frota/:id", async (req, res) => {
         });
     }
 
+    const novoEstado = viatura[0].ativo === 1 ? 0 : 1;
+
     await pool.execute(
         "UPDATE viaturas SET ativo = ? WHERE id = ?",
-        [ativo, id]
+        [novoEstado, id]
     );
 
     res.status(200).json({
-        mensagem: "Estado atualizado com sucesso"
+        mensagem: "Estado atualizado com sucesso",
+        ativo: novoEstado
     });
 });
 

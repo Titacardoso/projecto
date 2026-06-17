@@ -6,8 +6,6 @@ async function carregarFrota() {
     const resposta = await fetch("http://localhost:3000/api/frota");
     todasAsViaturas = await resposta.json();
 
-    listaFrota.innerHTML = "";
-
     const marcas = [];
 
     todasAsViaturas.forEach(viatura => {
@@ -50,7 +48,7 @@ function criarCard(viatura) {
 
             <p><strong>Matrícula:</strong> ${viatura.Matricula}</p>
             <p><strong>Ano:</strong> ${new Date(viatura.Ano).getFullYear()}</p>
-            <p><strong>VIN:</strong> ${viatura.VIN}</p>
+            <p><strong>VIN:</strong> ${viatura.VIN || ""}</p>
             <p><strong>Tipo:</strong> ${viatura.Tipo}</p>
             <p><strong>Ativo:</strong> ${viatura.ativo}</p>
 
@@ -61,41 +59,139 @@ function criarCard(viatura) {
             <button onclick="mostrarInformacao(${viatura.id})">
                 Informação
             </button>
+
+            <div id="info-${viatura.id}"></div>
         </div>
     `;
 }
 
 async function alterarEstado(id) {
-    await fetch(`http://localhost:3000/api/frota/${id}/ativo`, {
-        method: "PATCH"
+    const viatura = todasAsViaturas.find(v => v.id === id);
+
+    const novoEstado = viatura.ativo === "Sim" ? 0 : 1;
+
+    await fetch(`http://localhost:3000/api/frota/${id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            ativo: novoEstado
+        })
     });
 
     await carregarFrota();
 }
 
-async function mostrarInformacao(id) {
+function mostrarInformacao(id) {
     const viatura = todasAsViaturas.find(v => v.id === id);
+    const areaInfo = document.getElementById(`info-${id}`);
 
-    const revisao = prompt("Última revisão:", viatura.ultima_revisao || "");
-    const kms = prompt("Quilómetros:", viatura.quilometros || "");
-    const pneus = prompt("Troca de pneus:", viatura.troca_pneus || "");
-    const oleo = prompt("Mudança de óleo:", viatura.mudanca_oleo || "");
-    const inspecao = prompt("Próxima inspeção:", viatura.proxima_inspecao || "");
-    const observacoes = prompt("Observações:", viatura.observacoes || "");
+    areaInfo.innerHTML = `
+        <div class="tabela-info">
+            <h4>Informação da Viatura</h4>
+
+            <table>
+                <tr>
+                    <th>Última revisão</th>
+                    <td>${viatura.ultima_revisao || "Sem informação"}</td>
+                </tr>
+
+                <tr>
+                    <th>Quilómetros</th>
+                    <td>${viatura.quilometros || "Sem informação"}</td>
+                </tr>
+
+                <tr>
+                    <th>Troca de pneus</th>
+                    <td>${viatura.troca_pneus || "Sem informação"}</td>
+                </tr>
+
+                <tr>
+                    <th>Mudança de óleo</th>
+                    <td>${viatura.mudanca_oleo || "Sem informação"}</td>
+                </tr>
+
+                <tr>
+                    <th>Próxima inspeção</th>
+                    <td>${viatura.proxima_inspecao || "Sem informação"}</td>
+                </tr>
+
+                <tr>
+                    <th>Observações</th>
+                    <td>${viatura.observacoes || "Sem informação"}</td>
+                </tr>
+            </table>
+
+            <button onclick="editarInformacao(${viatura.id})">
+                Editar Informação
+            </button>
+
+            <button onclick="fecharInformacao(${viatura.id})">
+                Fechar
+            </button>
+        </div>
+    `;
+}
+
+function fecharInformacao(id) {
+    const areaInfo = document.getElementById(`info-${id}`);
+    areaInfo.innerHTML = "";
+}
+
+function editarInformacao(id) {
+    const viatura = todasAsViaturas.find(v => v.id === id);
+    const areaInfo = document.getElementById(`info-${id}`);
+
+    areaInfo.innerHTML = `
+        <div class="form-info">
+            <h4>Editar Informação</h4>
+
+            <label>Última revisão</label>
+            <input id="ultima_revisao-${id}" type="text" value="${viatura.ultima_revisao || ""}">
+
+            <label>Quilómetros</label>
+            <input id="quilometros-${id}" type="text" value="${viatura.quilometros || ""}">
+
+            <label>Troca de pneus</label>
+            <input id="troca_pneus-${id}" type="text" value="${viatura.troca_pneus || ""}">
+
+            <label>Mudança de óleo</label>
+            <input id="mudanca_oleo-${id}" type="text" value="${viatura.mudanca_oleo || ""}">
+
+            <label>Próxima inspeção</label>
+            <input id="proxima_inspecao-${id}" type="text" value="${viatura.proxima_inspecao || ""}">
+
+            <label>Observações</label>
+            <textarea id="observacoes-${id}">${viatura.observacoes || ""}</textarea>
+
+            <button onclick="guardarInformacao(${id})">
+                Guardar
+            </button>
+
+            <button onclick="mostrarInformacao(${id})">
+                Cancelar
+            </button>
+        </div>
+    `;
+}
+
+async function guardarInformacao(id) {
+    const dados = {
+        ultima_revisao: document.getElementById(`ultima_revisao-${id}`).value,
+        quilometros: document.getElementById(`quilometros-${id}`).value,
+        troca_pneus: document.getElementById(`troca_pneus-${id}`).value,
+        mudanca_oleo: document.getElementById(`mudanca_oleo-${id}`).value,
+        proxima_inspecao: document.getElementById(`proxima_inspecao-${id}`).value,
+        observacoes: document.getElementById(`observacoes-${id}`).value
+    };
 
     await fetch(`http://localhost:3000/api/frota/${id}/informacao`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            ultima_revisao: revisao,
-            quilometros: kms,
-            troca_pneus: pneus,
-            mudanca_oleo: oleo,
-            proxima_inspecao: inspecao,
-            observacoes: observacoes
-        })
+        body: JSON.stringify(dados)
     });
 
     alert("Informação guardada com sucesso!");
