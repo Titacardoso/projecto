@@ -21,6 +21,12 @@ const queryViaturas = `
         VIN,
         Tipo,
         Imagem,
+        ultima_revisao,
+        quilometros,
+        troca_pneus,
+        mudanca_oleo,
+        proxima_inspecao,
+        observacoes,
         CASE
             WHEN ativo = 1 THEN "Sim"
             ELSE "Nao"
@@ -156,6 +162,53 @@ app.patch("/api/frota/:id", async (req, res) => {
     });
 });
 
+app.put("/api/frota/:id/informacao", async (req, res) => {
+    const id = Number(req.params.id);
+
+    const {
+        ultima_revisao,
+        quilometros,
+        troca_pneus,
+        mudanca_oleo,
+        proxima_inspecao,
+        observacoes
+    } = req.body;
+
+    const [viatura] = await pool.execute(
+        "SELECT * FROM viaturas WHERE id = ?",
+        [id]
+    );
+
+    if (viatura.length === 0) {
+        return res.status(404).json({
+            mensagem: "Viatura nao encontrada"
+        });
+    }
+
+    await pool.execute(
+        `UPDATE viaturas
+        SET ultima_revisao = ?,
+            quilometros = ?,
+            troca_pneus = ?,
+            mudanca_oleo = ?,
+            proxima_inspecao = ?,
+            observacoes = ?
+        WHERE id = ?`,
+        [
+            ultima_revisao,
+            quilometros,
+            troca_pneus,
+            mudanca_oleo,
+            proxima_inspecao,
+            observacoes,
+            id
+        ]
+    );
+
+    res.status(200).json({
+        mensagem: "Informacao da viatura atualizada com sucesso"
+    });
+});
 
 app.listen(PORT, () => {
     console.log("Servidor a correr na porta 3000");

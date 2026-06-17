@@ -101,44 +101,6 @@ nav a:hover {
     display: block;
 }
 
-/* BANNER FROTA */
-
-.banner-frota {
-    position: relative;
-    width: 100%;
-    height: 420px;
-    overflow: hidden;
-}
-
-.banner-frota img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    display: block;
-    filter: brightness(65%);
-}
-
-.texto-banner {
-    position: absolute;
-    left: 8%;
-    bottom: 50px;
-    color: white;
-    text-align: left;
-}
-
-.texto-banner h2 {
-    font-size: 2.5em;
-    margin: 0 0 10px 0;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-}
-
-.texto-banner p {
-    font-size: 1.2em;
-    margin: 0;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-}
-
 /* CAIXAS */
 
 .caixa {
@@ -161,6 +123,92 @@ nav a:hover {
     text-align: center;
     margin-bottom: 10px;
     line-height: 1.6;
+}
+
+/* SERVIÇOS */
+
+.intro-servicos {
+    margin-bottom: 20px;
+}
+
+.servicos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.servico {
+    background-color: #f8f8f8;
+    width: 220px;
+    height: 140px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.servico:hover {
+    transform: translateY(-5px);
+}
+
+.servico img {
+    width: 40px;
+    margin-bottom: 10px;
+}
+
+.servico h3 {
+    color: #e10600;
+    font-size: 1em;
+    text-align: center;
+    margin: 0;
+}
+
+/* ÁREA RESERVADA */
+
+.area-reservada {
+    width: 100%;
+    text-align: center;
+    margin: 35px auto 10px auto;
+    padding: 30px 20px;
+    background-color: #f8f8f8;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.icone-reservado {
+    font-size: 42px;
+    margin-bottom: 8px;
+}
+
+.area-reservada h3 {
+    color: #e10600;
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.area-reservada p {
+    color: #555;
+    margin: 10px 0 22px 0;
+    text-align: center;
+}
+
+.area-reservada .botao-frota {
+    display: inline-block;
+    background-color: #e10600;
+    color: white;
+    text-decoration: none;
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.area-reservada .botao-frota:hover {
+    background-color: #a40000;
 }
 
 /* RECURSOS HUMANOS */
@@ -216,72 +264,29 @@ nav a:hover {
     text-align: center;
 }
 
-/* SERVIÇOS */
-
-.intro-servicos {
-    margin-bottom: 20px;
+.formulario-escondido {
+    display: none;
 }
 
-.servicos-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.servico {
-    background-color: #f8f8f8;
-    width: 220px;
-    height: 140px;
-    border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: 0.2s;
-}
-
-.servico:hover {
-    transform: translateY(-5px);
-}
-
-.servico img {
-    width: 40px;
-    margin-bottom: 10px;
-}
-
-.servico h3 {
-    color: #e10600;
-    font-size: 1em;
-    text-align: center;
-    margin: 0;
-}
-
-/* GALERIA */
-
-.galeria {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 22px;
+.candidatura-card {
     margin-top: 25px;
-}
-
-.galeria img {
-    width: 360px;
-    height: 250px;
-    object-fit: cover;
+    background-color: white;
     border-radius: 12px;
-    display: block;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: 0.3s;
+    padding: 25px;
 }
 
-.galeria img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+.candidatura-card button {
+    background-color: #e10600;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.candidatura-card button:hover {
+    background-color: #a40000;
 }
 
 /* CONTACTOS */
@@ -346,40 +351,6 @@ nav a:hover {
     transform: scale(1.05);
 }
 
-/* DISPONIBILIDADE */
-
-.disponibilidade {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 10px;
-    margin-bottom: 15px;
-}
-
-.opcao {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 12px;
-    background-color: #f8f8f8;
-    padding: 12px 18px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    cursor: pointer;
-    transition: 0.2s;
-    font-weight: bold;
-}
-
-.opcao:hover {
-    background-color: #eeeeee;
-    transform: scale(1.01);
-}
-
-.opcao input {
-    width: auto;
-    margin: 0;
-}
-
 /* RGPD */
 
 .rgpd-box {
@@ -400,225 +371,53 @@ nav a:hover {
     margin: 0;
 }
 
-/* REDES */
+/* LOGIN */
 
-.redes {
-    margin-top: 15px;
+.login-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 400px;
+    margin: 40px auto;
 }
 
-.redes a {
-    display: inline-block !important;
-    background-color: #e10600 !important;
-    color: white !important;
-    text-decoration: none !important;
-    padding: 10px 22px !important;
-    border-radius: 30px !important;
-    font-weight: bold !important;
-    transition: 0.3s !important;
+.login-container input {
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
-.redes a:hover {
-    background-color: white !important;
-    color: #e10600 !important;
-}
-
-/* PRIVACIDADE */
-
-.privacidade {
-    margin-top: 12px;
-}
-
-.privacidade a {
+.login-container button {
+    padding: 15px;
+    font-size: 18px;
+    background: #8B0000;
     color: white;
-    text-decoration: none;
-    font-size: 0.9em;
-    transition: 0.2s;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
-.privacidade a:hover {
-    color: #e10600;
+.login-container button:hover {
+    background: #a40000;
 }
 
-/* FOOTER */
-
-footer {
-    background-color: #333;
-    color: white;
+#mensagem {
+    color: red;
+    font-weight: bold;
     text-align: center;
-    padding: 20px;
 }
 
-/* RESPONSIVO */
+/* GESTÃO DE FROTA */
 
-@media (max-width: 768px) {
-
-    .caixa {
-        width: 95%;
-    }
-
-    .banner {
-        height: 220px;
-    }
-
-    .banner-frota {
-        height: 260px;
-    }
-
-    .texto-banner {
-        left: 6%;
-        bottom: 30px;
-    }
-
-    .texto-banner h2 {
-        font-size: 1.8em;
-    }
-
-    .texto-banner p {
-        font-size: 1em;
-    }
-
-    .rh-layout {
-        width: 95%;
-        flex-direction: column;
-    }
-
-    .rh-conteudo h2 {
-        font-size: 1.8em;
-    }
-
-    .servicos-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .servico {
-        width: 90%;
-    }
-
-    .galeria img {
-        width: 90%;
-        height: auto;
-    }
-
-    nav a {
-        display: block;
-        margin: 10px 0;
-    }
-
-    .rgpd {
-        align-items: flex-start;
-    }
-
-    #logo {
-        width: 160px;
-    }
-
-    #titulo {
-        font-size: 2em;
-    }
-
-    .destaque {
-        font-size: 0.95em;
-    }
-}
-#lista-frota{
-    display:flex;
-    flex-wrap:wrap;
-    gap:20px;
-    justify-content:center;
-    margin-top:30px;
-}
-
-.card-frota{
-    width:250px;
-    background:white;
-    border-radius:10px;
-    padding:20px;
-    box-shadow:0 0 10px rgba(0,0,0,0.15);
-}
-
-.card-frota h3{
-    color:#8B0000;
-    margin-bottom:10px;
-}
-.login-container{
-
-display:flex;
-
-flex-direction:column;
-
-gap:20px;
-
-width:400px;
-
-margin:40px auto;
-
-}
-
-.login-container input{
-
-padding:15px;
-
-font-size:18px;
-
-border:1px solid #ccc;
-
-border-radius:8px;
-
-}
-
-.login-container button{
-
-padding:15px;
-
-font-size:18px;
-
-background:#8B0000;
-
-color:white;
-
-border:none;
-
-border-radius:8px;
-
-cursor:pointer;
-
-}
-
-.login-container button:hover{
-
-background:#a40000;
-
-}
-
-#mensagem{
-
-color:red;
-
-font-weight:bold;
-
-text-align:center;
-
-}
-.grupo-marca {
-    width: 100%;
-    margin-bottom: 35px;
-}
-
-.grupo-marca h2 {
-    color: #e10600;
-    border-bottom: 2px solid #e10600;
-    padding-bottom: 8px;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.viaturas-marca {
+#lista-frota {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    margin-top: 30px;
 }
+
 .filtros-marcas {
     width: 100%;
     display: flex;
@@ -685,26 +484,164 @@ text-align:center;
 .card-frota button:hover {
     background-color: #e10600;
 }
-.botao-frota {
+
+/* REDES SOCIAIS */
+
+.redes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.redes a {
+    color: white !important;
+    text-decoration: none !important;
+    font-weight: bold;
+    background: none !important;
+    padding: 0 !important;
+}
+
+.redes a:hover {
+    color: #e10600 !important;
+}
+
+/* PRIVACIDADE */
+
+.privacidade {
+    margin-top: 12px;
+}
+
+.privacidade a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: 0.2s;
+}
+
+.privacidade a:hover {
+    color: #e10600;
+}
+
+/* FOOTER */
+
+footer {
+    background-color: #333;
+    color: white;
     text-align: center;
+    padding: 20px;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 768px) {
+
+    .caixa {
+        width: 95%;
+    }
+
+    .banner {
+        height: 220px;
+    }
+
+    .rh-layout {
+        width: 95%;
+        flex-direction: column;
+    }
+
+    .rh-conteudo h2 {
+        font-size: 1.8em;
+    }
+
+    .servicos-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .servico {
+        width: 90%;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .rgpd {
+        align-items: flex-start;
+    }
+
+    #logo {
+        width: 160px;
+    }
+
+    #titulo {
+        font-size: 2em;
+    }
+
+    .destaque {
+        font-size: 0.95em;
+    }
+
+    .login-container {
+        width: 90%;
+    }
+}
+/* REDES SOCIAIS */
+
+.redes{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:25px;
+    margin-top:15px;
+}
+
+.redes a{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:40px;
+    height:40px;
+}
+
+.redes img{
+    width:40px;
+    height:40px;
+    object-fit:contain;
+    display:block;
+}
+
+.redes img:hover{
+    transform:scale(1.1);
+}
+.galeria {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
     margin-top: 25px;
 }
 
-.botao-frota a {
-    display: inline-block;
-    background-color: #e10600;
-    color: white;
-    text-decoration: none;
-    padding: 14px 28px;
-    border-radius: 30px;
-    font-weight: bold;
+.galeria img {
+    width: 360px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: 0.3s;
 }
 
-.botao-frota a:hover {
-    background-color: #a40000;
+.galeria img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
-.texto-frota {
+.mensagem-frota {
+    width: 100%;
     text-align: center;
     color: #666;
+    font-size: 1.1em;
     margin-top: 20px;
 }
