@@ -1,10 +1,32 @@
 const listaFrota = document.getElementById("lista-frota");
+const estatisticasFrota = document.getElementById("estatisticas-frota");
 
 let todasAsViaturas = [];
 
 async function carregarFrota() {
     const resposta = await fetch("http://localhost:3000/api/frota");
     todasAsViaturas = await resposta.json();
+
+    const total = todasAsViaturas.length;
+    const ativas = todasAsViaturas.filter(viatura => viatura.ativo === "Sim").length;
+    const inativas = todasAsViaturas.filter(viatura => viatura.ativo === "Nao").length;
+
+    estatisticasFrota.innerHTML = `
+        <div class="estatisticas">
+            <div>
+                <h3>${total}</h3>
+                <p>Total de viaturas</p>
+            </div>
+            <div>
+                <h3>${ativas}</h3>
+                <p>Ativas</p>
+            </div>
+            <div>
+                <h3>${inativas}</h3>
+                <p>Inativas</p>
+            </div>
+        </div>
+    `;
 
     const marcas = [];
 
@@ -16,6 +38,8 @@ async function carregarFrota() {
 
     listaFrota.innerHTML = `
         <div class="filtros-marcas">
+            <button onclick="mostrarTodas()">🚛 Todas</button>
+
             ${marcas.map(marca => `
                 <button onclick="mostrarMarca('${marca}')">${marca}</button>
             `).join("")}
@@ -23,7 +47,6 @@ async function carregarFrota() {
 
         <div id="area-viaturas">
             <p class="mensagem-frota">
-                Selecione uma marca para visualizar as viaturas.
             </p>
         </div>
     `;
@@ -31,7 +54,6 @@ async function carregarFrota() {
 
 function mostrarMarca(marca) {
     const areaViaturas = document.getElementById("area-viaturas");
-
     areaViaturas.innerHTML = "";
 
     const viaturasFiltradas = todasAsViaturas.filter(viatura => viatura.Marca === marca);
@@ -41,24 +63,86 @@ function mostrarMarca(marca) {
     });
 }
 
+function mostrarTodas() {
+ function pesquisarMatricula() {
+
+    const pesquisa = document
+        .getElementById("pesquisa-matricula")
+        .value
+        .toLowerCase()
+        .trim();
+
+    listaFrota.innerHTML = `
+
+        <div class="filtros-marcas">
+
+            <button onclick="mostrarTodas()">🚛 Todas</button>
+
+            ${[...new Set(todasAsViaturas.map(viatura => viatura.Marca))].map(marca => `
+
+                <button onclick="mostrarMarca('${marca}')">${marca}</button>
+
+            `).join("")}
+
+        </div>
+
+        <div id="area-viaturas"></div>
+
+    `;
+
+    const areaViaturas = document.getElementById("area-viaturas");
+
+    const viaturasFiltradas = todasAsViaturas.filter(viatura =>
+
+        viatura.Matricula.toLowerCase().includes(pesquisa)
+
+    );
+
+    if (viaturasFiltradas.length === 0) {
+
+        areaViaturas.innerHTML = `
+
+            <p class="mensagem-frota">
+
+                Nenhuma viatura encontrada com essa matrícula.
+
+            </p>
+
+        `;
+
+        return;
+    }
+
+    viaturasFiltradas.forEach(viatura => {
+
+        areaViaturas.innerHTML += criarCard(viatura);
+
+    });
+
+}
 function criarCard(viatura) {
     return `
-        <div class="card-frota">
+       <div class="card-frota ${viatura.ativo === "Nao" ? "viatura-inativa" : ""}">
             <h3>${viatura.Marca} ${viatura.Modelo}</h3>
 
             <p><strong>Matrícula:</strong> ${viatura.Matricula}</p>
             <p><strong>Ano:</strong> ${new Date(viatura.Ano).getFullYear()}</p>
             <p><strong>VIN:</strong> ${viatura.VIN || ""}</p>
             <p><strong>Tipo:</strong> ${viatura.Tipo}</p>
-            <p><strong>Ativo:</strong> ${viatura.ativo}</p>
+           <p>
 
-            <button onclick="alterarEstado(${viatura.id})">
-                Alterar Estado
-            </button>
+<strong>Estado:</strong>
 
-            <button onclick="mostrarInformacao(${viatura.id})">
-                Informação
-            </button>
+${viatura.ativo === "Sim"
+
+? "🟢 Ativo"
+
+: "🔴 Inativo"}
+
+</p>
+
+            <button onclick="alterarEstado(${viatura.id})">Alterar Estado</button>
+            <button onclick="mostrarInformacao(${viatura.id})">Informação</button>
 
             <div id="info-${viatura.id}"></div>
         </div>
@@ -66,21 +150,19 @@ function criarCard(viatura) {
 }
 
 async function alterarEstado(id) {
+
     const viatura = todasAsViaturas.find(v => v.id === id);
 
-    const novoEstado = viatura.ativo === "Sim" ? 0 : 1;
+    const marcaAtual = viatura.Marca;
 
- await fetch(`http://localhost:3000/api/frota/${id}/ativo`, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            ativo: novoEstado
-        })
+    await fetch(`http://localhost:3000/api/frota/${id}/ativo`, {
+        method: "PATCH"
     });
 
     await carregarFrota();
+
+    mostrarMarca(marcaAtual);
+
 }
 
 function mostrarInformacao(id) {
@@ -96,47 +178,36 @@ function mostrarInformacao(id) {
                     <th>Última revisão</th>
                     <td>${viatura.ultima_revisao || "Sem informação"}</td>
                 </tr>
-
                 <tr>
                     <th>Quilómetros</th>
                     <td>${viatura.quilometros || "Sem informação"}</td>
                 </tr>
-
                 <tr>
                     <th>Troca de pneus</th>
                     <td>${viatura.troca_pneus || "Sem informação"}</td>
                 </tr>
-
                 <tr>
                     <th>Mudança de óleo</th>
                     <td>${viatura.mudanca_oleo || "Sem informação"}</td>
                 </tr>
-
                 <tr>
                     <th>Próxima inspeção</th>
                     <td>${viatura.proxima_inspecao || "Sem informação"}</td>
                 </tr>
-
                 <tr>
                     <th>Observações</th>
                     <td>${viatura.observacoes || "Sem informação"}</td>
                 </tr>
             </table>
 
-            <button onclick="editarInformacao(${viatura.id})">
-                Editar Informação
-            </button>
-
-            <button onclick="fecharInformacao(${viatura.id})">
-                Fechar
-            </button>
+            <button onclick="editarInformacao(${viatura.id})">Editar Informação</button>
+            <button onclick="fecharInformacao(${viatura.id})">Fechar</button>
         </div>
     `;
 }
 
 function fecharInformacao(id) {
-    const areaInfo = document.getElementById(`info-${id}`);
-    areaInfo.innerHTML = "";
+    document.getElementById(`info-${id}`).innerHTML = "";
 }
 
 function editarInformacao(id) {
@@ -165,13 +236,8 @@ function editarInformacao(id) {
             <label>Observações</label>
             <textarea id="observacoes-${id}">${viatura.observacoes || ""}</textarea>
 
-            <button onclick="guardarInformacao(${id})">
-                Guardar
-            </button>
-
-            <button onclick="mostrarInformacao(${id})">
-                Cancelar
-            </button>
+            <button onclick="guardarInformacao(${id})">Guardar</button>
+            <button onclick="mostrarInformacao(${id})">Cancelar</button>
         </div>
     `;
 }

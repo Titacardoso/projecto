@@ -173,7 +173,7 @@ app.patch("/api/frota/:id/ativo", async (req, res) => {
     const id = Number(req.params.id);
 
     const [viatura] = await pool.execute(
-        "SELECT * FROM viaturas WHERE id = ?",
+        "SELECT ativo FROM viaturas WHERE id = ?",
         [id]
     );
 
@@ -195,7 +195,6 @@ app.patch("/api/frota/:id/ativo", async (req, res) => {
         ativo: novoEstado
     });
 });
-
 app.put("/api/frota/:id/informacao", async (req, res) => {
     const id = Number(req.params.id);
 

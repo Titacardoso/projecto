@@ -24,10 +24,23 @@
 <section class="caixa">
 
     <h2>Gestão de Frota</h2>
+<div id="estatisticas-frota"></div>
+<div class="pesquisa-frota">
+    <input
+        type="text"
+        id="pesquisa-matricula"
+        placeholder="Pesquisar por matrícula..."
+    >
 
-    <button onclick="terminarSessao()">
+    <button onclick="pesquisarMatricula()">
+        Pesquisar
+    </button>
+</div>
+   <div class="topo-gestao">
+    <button onclick="terminarSessao()" class="botao-sair">
         Terminar Sessão
     </button>
+</div>
 
     <div id="lista-frota"></div>
 
