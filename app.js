@@ -70,7 +70,7 @@ async function alterarEstado(id) {
 
     const novoEstado = viatura.ativo === "Sim" ? 0 : 1;
 
-    await fetch(`http://localhost:3000/api/frota/${id}`, {
+ await fetch(`http://localhost:3000/api/frota/${id}/ativo`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json"
@@ -199,4 +199,4 @@ async function guardarInformacao(id) {
     await carregarFrota();
 }
 
-carregarFrota();
+window.onload = carregarFrota;
