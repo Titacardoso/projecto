@@ -747,24 +747,49 @@ min-height: 330px;
         height: 220px;
     }
 }
-.topo-gestao {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 15px;
+.topo-gestao{
+
+display:flex;
+
+justify-content:center;
+
+margin:20px 0;
+
 }
 
-.botao-sair {
-    background-color: #333;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
+.botao-sair{
+
+background:#333;
+
+color:white;
+
+border:none;
+
+padding:10px 20px;
+
+border-radius:8px;
+
+cursor:pointer;
+
+font-weight:bold;
+
 }
 
 .botao-sair:hover {
     background-color: #e10600;
+}
+.pesquisa-frota{
+
+margin-bottom:30px;
+
+}
+
+.card-viatura{
+
+min-height:380px;
+
+height:auto;
+
 }
 .viatura-inativa {
     background-color: #f3f3f3;
@@ -843,4 +868,31 @@ min-height: 330px;
 
 .pesquisa-frota button:hover {
     background-color: #8b0000;
+}
+.estatisticas {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.estatisticas div {
+    background-color: white;
+    padding: 20px;
+    width: 180px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.estatisticas h3 {
+    font-size: 40px;
+    color: #e10600;
+    margin: 0;
+}
+
+.estatisticas p {
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: bold;
 }

@@ -17,10 +17,12 @@ async function carregarFrota() {
                 <h3>${total}</h3>
                 <p>Total de viaturas</p>
             </div>
+
             <div>
                 <h3>${ativas}</h3>
                 <p>Ativas</p>
             </div>
+
             <div>
                 <h3>${inativas}</h3>
                 <p>Inativas</p>
@@ -47,6 +49,7 @@ async function carregarFrota() {
 
         <div id="area-viaturas">
             <p class="mensagem-frota">
+                Selecione uma marca ou clique em "🚛 Todas" para visualizar toda a frota.
             </p>
         </div>
     `;
@@ -54,6 +57,7 @@ async function carregarFrota() {
 
 function mostrarMarca(marca) {
     const areaViaturas = document.getElementById("area-viaturas");
+
     areaViaturas.innerHTML = "";
 
     const viaturasFiltradas = todasAsViaturas.filter(viatura => viatura.Marca === marca);
@@ -64,82 +68,67 @@ function mostrarMarca(marca) {
 }
 
 function mostrarTodas() {
- function pesquisarMatricula() {
+    const areaViaturas = document.getElementById("area-viaturas");
 
+    areaViaturas.innerHTML = "";
+
+    todasAsViaturas.forEach(viatura => {
+        areaViaturas.innerHTML += criarCard(viatura);
+    });
+}
+
+function pesquisarMatricula() {
     const pesquisa = document
         .getElementById("pesquisa-matricula")
         .value
         .toLowerCase()
         .trim();
 
-    listaFrota.innerHTML = `
-
-        <div class="filtros-marcas">
-
-            <button onclick="mostrarTodas()">🚛 Todas</button>
-
-            ${[...new Set(todasAsViaturas.map(viatura => viatura.Marca))].map(marca => `
-
-                <button onclick="mostrarMarca('${marca}')">${marca}</button>
-
-            `).join("")}
-
-        </div>
-
-        <div id="area-viaturas"></div>
-
-    `;
-
     const areaViaturas = document.getElementById("area-viaturas");
 
+    areaViaturas.innerHTML = "";
+
     const viaturasFiltradas = todasAsViaturas.filter(viatura =>
-
         viatura.Matricula.toLowerCase().includes(pesquisa)
-
     );
 
-    if (viaturasFiltradas.length === 0) {
-
+    if (pesquisa === "") {
         areaViaturas.innerHTML = `
-
             <p class="mensagem-frota">
-
-                Nenhuma viatura encontrada com essa matrícula.
-
+                Selecione uma marca ou clique em "🚛 Todas" para visualizar toda a frota.
             </p>
-
         `;
+        return;
+    }
 
+    if (viaturasFiltradas.length === 0) {
+        areaViaturas.innerHTML = `
+            <p class="mensagem-frota">
+                Nenhuma viatura encontrada com essa matrícula.
+            </p>
+        `;
         return;
     }
 
     viaturasFiltradas.forEach(viatura => {
-
         areaViaturas.innerHTML += criarCard(viatura);
-
     });
-
 }
+
 function criarCard(viatura) {
     return `
-       <div class="card-frota ${viatura.ativo === "Nao" ? "viatura-inativa" : ""}">
-            <h3>${viatura.Marca} ${viatura.Modelo}</h3>
+        <div class="card-frota ${viatura.ativo === "Nao" ? "viatura-inativa" : ""}">
+            <h3>${viatura.Marca} ${viatura.Modelo || ""}</h3>
 
             <p><strong>Matrícula:</strong> ${viatura.Matricula}</p>
             <p><strong>Ano:</strong> ${new Date(viatura.Ano).getFullYear()}</p>
             <p><strong>VIN:</strong> ${viatura.VIN || ""}</p>
-            <p><strong>Tipo:</strong> ${viatura.Tipo}</p>
-           <p>
+            <p><strong>Tipo:</strong> ${viatura.Tipo || ""}</p>
 
-<strong>Estado:</strong>
-
-${viatura.ativo === "Sim"
-
-? "🟢 Ativo"
-
-: "🔴 Inativo"}
-
-</p>
+            <p>
+                <strong>Estado:</strong>
+                ${viatura.ativo === "Sim" ? "🟢 Ativo" : "🔴 Inativo"}
+            </p>
 
             <button onclick="alterarEstado(${viatura.id})">Alterar Estado</button>
             <button onclick="mostrarInformacao(${viatura.id})">Informação</button>
@@ -150,9 +139,7 @@ ${viatura.ativo === "Sim"
 }
 
 async function alterarEstado(id) {
-
     const viatura = todasAsViaturas.find(v => v.id === id);
-
     const marcaAtual = viatura.Marca;
 
     await fetch(`http://localhost:3000/api/frota/${id}/ativo`, {
@@ -162,7 +149,6 @@ async function alterarEstado(id) {
     await carregarFrota();
 
     mostrarMarca(marcaAtual);
-
 }
 
 function mostrarInformacao(id) {
@@ -178,22 +164,27 @@ function mostrarInformacao(id) {
                     <th>Última revisão</th>
                     <td>${viatura.ultima_revisao || "Sem informação"}</td>
                 </tr>
+
                 <tr>
                     <th>Quilómetros</th>
                     <td>${viatura.quilometros || "Sem informação"}</td>
                 </tr>
+
                 <tr>
                     <th>Troca de pneus</th>
                     <td>${viatura.troca_pneus || "Sem informação"}</td>
                 </tr>
+
                 <tr>
                     <th>Mudança de óleo</th>
                     <td>${viatura.mudanca_oleo || "Sem informação"}</td>
                 </tr>
+
                 <tr>
                     <th>Próxima inspeção</th>
                     <td>${viatura.proxima_inspecao || "Sem informação"}</td>
                 </tr>
+
                 <tr>
                     <th>Observações</th>
                     <td>${viatura.observacoes || "Sem informação"}</td>
@@ -207,7 +198,8 @@ function mostrarInformacao(id) {
 }
 
 function fecharInformacao(id) {
-    document.getElementById(`info-${id}`).innerHTML = "";
+    const areaInfo = document.getElementById(`info-${id}`);
+    areaInfo.innerHTML = "";
 }
 
 function editarInformacao(id) {
