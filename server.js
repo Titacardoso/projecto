@@ -9,7 +9,7 @@ const pool = require("./database");
 app.use(express.json());
 app.use(cors());
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const queryViaturas = `
     SELECT
@@ -244,5 +244,5 @@ app.put("/api/frota/:id/informacao", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log("Servidor a correr na porta 3000");
+    console.log(`Servidor a correr na porta ${PORT}`);
 });
