@@ -64,7 +64,9 @@ app.get("/api/frota/:id", async (req, res) => {
 });
 
 app.post("/api/frota", async (req, res) => {
-    const { Matricula, Marca, Modelo, Ano, VIN, Tipo } = req.body;
+    console.log(req.body);
+
+const { Matricula, Marca, Modelo, Ano, VIN, Tipo } = req.body;
 
     if (!Matricula || !Marca || !Modelo || !Ano || !VIN || !Tipo) {
         return res.status(400).json({

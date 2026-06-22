@@ -38,21 +38,27 @@ async function carregarFrota() {
         }
     });
 
-    listaFrota.innerHTML = `
-        <div class="filtros-marcas">
-            <button onclick="mostrarTodas()">🚛 Todas</button>
+   listaFrota.innerHTML = `
+    <div class="filtros-marcas">
+        <button onclick="mostrarTodas()">🚛 Todas</button>
 
-            ${marcas.map(marca => `
-                <button onclick="mostrarMarca('${marca}')">${marca}</button>
-            `).join("")}
-        </div>
+        ${marcas.map(marca => `
+            <button onclick="mostrarMarca('${marca}')">${marca}</button>
+        `).join("")}
+    </div>
 
-        <div id="area-viaturas">
-            <p class="mensagem-frota">
-                Selecione uma marca ou clique em "🚛 Todas" para visualizar toda a frota.
-            </p>
-        </div>
-    `;
+    <div id="area-viaturas">
+        <p class="mensagem-frota">
+            Selecione uma marca ou clique em "🚛 Todas" para visualizar toda a frota.
+        </p>
+    </div>
+
+    <div class="acoes-frota">
+        <button onclick="mostrarFormularioAdicionar()">+ Adicionar Viatura</button>
+    </div>
+
+    <div id="formulario-adicionar"></div>
+`;
 }
 
 function mostrarMarca(marca) {
@@ -132,6 +138,7 @@ function criarCard(viatura) {
 
             <button onclick="alterarEstado(${viatura.id})">Alterar Estado</button>
             <button onclick="mostrarInformacao(${viatura.id})">Informação</button>
+            <button onclick="removerViatura(${viatura.id})">Remover Viatura</button>
 
             <div id="info-${viatura.id}"></div>
         </div>
@@ -256,5 +263,102 @@ async function guardarInformacao(id) {
 
     await carregarFrota();
 }
+async function removerViatura(id) {
+    const confirmar = confirm("Tens a certeza que queres remover esta viatura?");
 
+    if (!confirmar) {
+        return;
+    }
+
+    await fetch(`http://localhost:3000/api/frota/${id}`, {
+        method: "DELETE"
+    });
+
+    alert("Viatura removida com sucesso!");
+
+    await carregarFrota();
+}
+function mostrarFormularioAdicionar() {
+
+    const formulario = document.getElementById("formulario-adicionar");
+
+    formulario.innerHTML = `
+
+        <div class="form-info">
+
+            <h4>Adicionar Viatura</h4>
+
+            <label>Matrícula</label>
+            <input id="nova-matricula" type="text">
+
+            <label>Marca</label>
+            <input id="nova-marca" type="text">
+
+            <label>Modelo</label>
+            <input id="novo-modelo" type="text">
+
+            <label>Ano</label>
+            <input id="novo-ano" type="date">
+
+            <label>VIN</label>
+            <input id="novo-vin" type="text">
+
+            <label>Tipo</label>
+            <input id="novo-tipo" type="text">
+
+            <button onclick="adicionarViatura()">
+                Guardar Viatura
+            </button>
+
+            <button onclick="fecharFormularioAdicionar()">
+                Cancelar
+            </button>
+
+        </div>
+
+    `;
+}
+
+function fecharFormularioAdicionar() {
+
+    document.getElementById("formulario-adicionar").innerHTML = "";
+
+}
+
+async function adicionarViatura() {
+
+    const novaViatura = {
+
+        Matricula: document.getElementById("nova-matricula").value,
+
+        Marca: document.getElementById("nova-marca").value,
+
+        Modelo: document.getElementById("novo-modelo").value,
+
+        Ano: document.getElementById("novo-ano").value,
+
+        VIN: document.getElementById("novo-vin").value,
+
+        Tipo: document.getElementById("novo-tipo").value
+
+    };
+
+    await fetch("http://localhost:3000/api/frota", {
+
+        method: "POST",
+
+        headers: {
+
+            "Content-Type": "application/json"
+
+        },
+
+        body: JSON.stringify(novaViatura)
+
+    });
+
+    alert("Viatura adicionada com sucesso!");
+
+    await carregarFrota();
+}
 window.onload = carregarFrota;

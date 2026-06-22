@@ -23,37 +23,26 @@
 
 <section class="caixa">
 
-<h2>Gestão de Frota</h2>
+    <div class="botoes-topo-gestao">
+        <button onclick="voltarMenuPrincipal()">🏠 Menu Principal</button>
+        <button onclick="terminarSessao()">🚪 Terminar Sessão</button>
+    </div>
 
-<div id="estatisticas-frota"></div>
+    <h2>Gestão de Frota</h2>
 
-<div class="pesquisa-frota">
+    <div id="estatisticas-frota"></div>
 
-<input
-type="text"
-id="pesquisa-matricula"
-placeholder="Pesquisar por matrícula..."
->
+    <div class="pesquisa-frota">
+        <input
+            type="text"
+            id="pesquisa-matricula"
+            placeholder="Pesquisar por matrícula..."
+        >
 
-<button onclick="pesquisarMatricula()">
+        <button onclick="pesquisarMatricula()">Pesquisar</button>
+    </div>
 
-Pesquisar
-
-</button>
-
-</div>
-
-<div class="topo-gestao">
-
-<button onclick="terminarSessao()" class="botao-sair">
-
-Terminar Sessão
-
-</button>
-
-</div>
-
-<div id="lista-frota"></div>
+    <div id="lista-frota"></div>
 
 </section>
 
@@ -64,8 +53,12 @@ Terminar Sessão
 <script src="app.js"></script>
 
 <script>
-function terminarSessao(){
+function terminarSessao() {
     window.location.href = "login.html";
+}
+
+function voltarMenuPrincipal() {
+    window.location.href = "index.html";
 }
 </script>
 
